@@ -7,15 +7,13 @@ def pascal_triangle(n):
     """returns a list of lists of integers representing the Pascal’s triangle of n"""
     if n <= 0:
         return []
-    if n == 1:
-        return [[1]]
-    row = [1]
-    res = pascal_triangle(n - 1)
-    last_row = res[-1]
+    res = [[1]]
 
-    for i in range(len(last_row) - 1):
-        row.append(last_row[i] + last_row[i + 1])
+    for i in range(n - 1):
+        li = [1]
+        for j in range(i):
+            li.append(res[i][j] + res[i][j + 1])
+        li.append(1)
+        res.append(li)
 
-    row += [1]
-    res.append(row)
     return res
